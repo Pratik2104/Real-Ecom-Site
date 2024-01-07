@@ -1,0 +1,66 @@
+{% extends 'shop/index.html' %}
+{% block body %}
+<body>
+    <h1>All Products</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-sm">
+                    <form class="card-body row align-items-center">
+                        <div class="col">
+                            <input type="search" name="item_name" placeholder="Search for products" class="form-control form-control-borderless">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            {% for product in product_list %}
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ product.image }}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <a href="details/{{ product.id }}">
+                                <h4 id="nm{{ product.id }}">{{ product.title }}</h4>
+                            </a>
+                        </div>
+                        <div class="card-text">
+                            <strike>$ {{ product.price }}</strike>
+                        </div>
+                        <div id="price{{ product.id }}" class="card-text">$ {{ product.discount_price }}</div>
+                        <a class="btn btn-warning" href="details/{{ product.id }}">View</a>
+                        <a id="{{ product.id }}" class="btn btn-warning atc" href="addtocart/{{ product.id }}">Add to cart</a>
+                        <a id="{{ product.id }}" class="btn btn-warning atc" href="addtowishlist/{{ product.id }}">Add to Wishlist</a>
+                    </div>
+                </div>
+            </div>
+           {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-3 offset-md-4">
+                <ul class="pagination">
+                    {% if product_list.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ product_list.previous_page_number }}">Previous</a>
+                        </li>
+                    {% endif %}
+
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{ product_list.number }}">Current</a>
+                    </li>
+
+                    {% if product_list.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ product_list.next_page_number }}">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'shop/index.html' %}
+{% block body %}
+    <h1>Cart</h1>
+    <body>
+        {% if user.is_authenticated %}
+                {% for product in product_list %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="{{ product.image }}" alt="" width="200" height="200">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="card-title">
+                                            <a href="details/{{ product.id }}">
+                                                <h4 id="nm{{ product.id }}">{{ product.title }}</h4>
+                                            </a>
+                                        </div>
+                                        <div class="card-text">
+                                            <strike>$ {{ product.price }}</strike>
+                                        </div>
+                                        <a class="btn btn-warning" href="removefromcart/{{ product.id }}">Remove</a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div id="price{{ product.id }}" class="card-text">$ {{ product.discount_price }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               {% endfor %}
+                <div class="row">
+                    <div class="col-md-6"></div>
+                        <div class="col">
+                            <div class="row">
+                                <h3 style="color: green">subtotal : {{ subtotal }}</h3>
+                            </div>
+                            <div class="row">
+                                <a href="{% url 'checkout' %}" class="btn btn-warning">Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        {% else %}
+            <div class="row">
+              <div class="row">
+                <h3>You are not currently logged in.</h3>
+              </div>
+              <div class="row">
+                <a href="{% url 'login' %}" type="button" class='btn btn-warning'>Login</a>
+              </div>
+            </div>
+        {% endif %}
+    </body>
+{% endblock %}
+
