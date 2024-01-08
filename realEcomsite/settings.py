@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from django.urls import reverse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,7 +127,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'itemList'
-LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = '/shop'
+LOGIN_URL = '/login'
 #MEDIA_ROOT = os.path.join(BASE_DIR,"pictures")
 #MEDIA_URL = "/pictures/"
