@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-arc^qk(gni+n_oqu340*1#5f1ukwa+b@4ux=c6yf=g1o+7nk#=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['pratik2104.github.io','localhost']
 
 
 # Application definition
